@@ -5,7 +5,7 @@ app.use(express.json())
 const path = require('path')
 const userRoutes = require('./routes/userRoutes')
 const cors = require('cors');
-var corsOptions = ['http://localhost:3000'];
+var corsOptions = ['http://localhost:3000','https://bathwaresunhearrt.com/'];
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');

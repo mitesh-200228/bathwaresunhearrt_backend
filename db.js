@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-var mongoDBURL = 'mongodb+srv://sunhearrtt:sunhearrt123@sunhearrt.fdkpy19.mongodb.net/'
+var mongoDBURL = `${process.env.DB_URL}`
 
 mongoose.connect(mongoDBURL , {useUnifiedTopology:true , useNewUrlParser:true});
 
