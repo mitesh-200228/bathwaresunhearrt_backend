@@ -30,5 +30,5 @@ app.listen(port, (req, res) => {
     console.log(`Node JS Server Started on ${port}`)
 });
 app.get('/',(req,res)=>{
-    return res.send({message:'Listening successfully'});
+    res.send({message:'Listening successfully'});
 })
