@@ -5,15 +5,15 @@ app.use(express.json())
 const path = require('path')
 const userRoutes = require('./routes/userRoutes')
 const cors = require('cors');
-var corsOptions = ['http://localhost:3000','https://bathwaresunhearrt.com/'];
+var corsOptions = ['http://localhost:3000', 'https://bathwaresunhearrt.com/'];
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     next();
-  });
-app.use('/api',cors(corsOptions), userRoutes);
+});
+app.use('/api', cors(corsOptions), userRoutes);
 
 if (process.env.NODE_ENV === 'production') {
     app.use('/', express.static('client/build'))
@@ -25,5 +25,10 @@ if (process.env.NODE_ENV === 'production') {
     })
 }
 
-const port = process.env.PORT || 5000
-app.listen(port, () => console.log(`Node JS Server Started on ${port}`))
+const port = process.env.PORT
+app.listen(port, (req, res) => {
+    console.log(`Node JS Server Started on ${port}`)
+});
+app.get('/',(req,res)=>{
+    return res.send({message:'Listening successfully'});
+})
