@@ -21,6 +21,9 @@ router.post("/sendcomplaint", async (req, res) => {
     latitude = req.body.allData[13];
     longitude = req.body.allData[14];
     let initialUser;
+    if(!firstname || !lastname || !email || !number || !typeIssue || !comments || !bill || !country || !address || !city || !state || !pincode){
+        return res.status(400).json({message:'Send All Information!'});
+    }
     try {
         initialUser = await User.find({ email }).numberOfComplain;
     } catch (error) {
