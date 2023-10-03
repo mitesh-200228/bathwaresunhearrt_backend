@@ -10,8 +10,8 @@ router.post("/sendcomplaint", async (req, res) => {
     const number = req.body.allData[3];
     const typeIssue = req.body.allData[4];
     let others, comments, bill, country, address, city, state, pincode, latitude, longitude;
-    others = req.body.allData[5];
-    comments = req.body.allData[6];
+    comments = req.body.allData[5];
+    others = req.body.allData[6];
     bill = req.body.allData[7];
     country = req.body.allData[8];
     address = req.body.allData[9];
