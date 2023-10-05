@@ -62,7 +62,7 @@ router.post("/isalreadyregistered", async (req, res) => {
 
 router.post('/adminacess', async (req, res) => {
     const { email, password } = req.body;
-    if (email === 'xyz@gmail.com' && password === 'xyz') {
+    if (email === `${process.env.EMAIL}` && password === `${process.env.PASS}`) {
         try {
             const data = await User.find({});
             console.log(data);
