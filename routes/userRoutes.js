@@ -25,10 +25,12 @@ router.post("/sendcomplaint", async (req, res) => {
         return res.status(400).json({message:'Send All Information!'});
     }
     try {
-        initialUser = await User.find({ email }).numberOfComplain;
+        initialUser = await User.find({ email });
     } catch (error) {
         return res.status(500).json({ message: "Something wrong, try again later!" });
     }
+    // console.log(initialUser[0].numberOfComplain);
+    initialUser = initialUser[0].numberOfComplain;
     try {
         const newone = new User({
             firstname, lastname, email, number, typeIssue, others, comments, bill, country, address, city, state, numberOfComplain: (initialUser ? initialUser : 0) + 1, pincode, latitude, longitude
