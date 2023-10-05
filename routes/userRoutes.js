@@ -30,7 +30,8 @@ router.post("/sendcomplaint", async (req, res) => {
         return res.status(500).json({ message: "Something wrong, try again later!" });
     }
     // console.log(initialUser[0].numberOfComplain);
-    if(initialUser !== null || initialUser !== undefined) {
+    console.log(initialUser);
+    if((initialUser !== null || initialUser !== undefined) && initialUser.length > 0) {
         initialUser = initialUser[0].numberOfComplain;
     }
     // console.log("stage 1 done");
