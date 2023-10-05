@@ -21,8 +21,8 @@ router.post("/sendcomplaint", async (req, res) => {
     latitude = req.body.allData[13];
     longitude = req.body.allData[14];
     let initialUser;
-    if(!firstname || !lastname || !email || !number || !typeIssue || !comments || !bill || !country || !address || !city || !state || !pincode){
-        return res.status(400).json({message:'Send All Information!'});
+    if (!firstname || !lastname || !email || !number || !typeIssue || !comments || !bill || !country || !address || !city || !state || !pincode) {
+        return res.status(400).json({ message: 'Send All Information!' });
     }
     try {
         initialUser = await User.find({ email });
@@ -30,13 +30,19 @@ router.post("/sendcomplaint", async (req, res) => {
         return res.status(500).json({ message: "Something wrong, try again later!" });
     }
     // console.log(initialUser[0].numberOfComplain);
-    initialUser = initialUser[0].numberOfComplain;
+    if(initialUser !== null || initialUser !== undefined) {
+        initialUser = initialUser[0].numberOfComplain;
+    }
+    // console.log("stage 1 done");
     try {
         const newone = new User({
             firstname, lastname, email, number, typeIssue, others, comments, bill, country, address, city, state, numberOfComplain: (initialUser ? initialUser : 0) + 1, pincode, latitude, longitude
         });
+        // console.log("stage 2 done");
         await newone.save();
+        // console.log("stage 3 done");
         return res.status(200).json({ message: "Data Saved!" });
+        // console.log("stage 4 done");
     } catch (error) {
         return res.status(500).json({ message: "Something wrong, try again later!" });
     }
